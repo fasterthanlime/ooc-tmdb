@@ -1,0 +1,5 @@
+Name: tmdb
+Description: helper to query tmdb
+SourcePath: source
+Main: tmdb_test.ooc
+
