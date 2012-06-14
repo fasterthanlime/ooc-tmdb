@@ -1,3 +1,10 @@
+import tmdb
 
+main: func {
+    "Hi, TMDb world!" println()
+    client := TMDb new("config/credentials.zc")
 
-"Hi world!" println()
+    resp := client search("Shrek")
+    resp println()
+}
+

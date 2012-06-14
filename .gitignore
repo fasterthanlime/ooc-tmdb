@@ -1,2 +1,5 @@
 snowflake
 tmdb_test
+third-party/*
+
+config/*
