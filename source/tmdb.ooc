@@ -6,7 +6,7 @@ import zombieconfig, curl/Highlevel, endorse
 TMDb: class {
 
     config: ZombieConfig
-    baseUrl := "http://api.themoviedb.org/3/search/movie"
+    baseUrl := "http://api.themoviedb.org/3"
 
     init: func (configPath: String) {
         config = ZombieConfig new(configPath)
@@ -19,6 +19,10 @@ TMDb: class {
     /*
      * private methods
      */
+
+    defaults: HashMap<String, String> { get {
+        map("api_key" => config["tmdb_api_key"]) 
+    } }
 
     encode_parameters: func (params: HashMap<String, String>) -> String {
         buffer := Buffer new()
@@ -37,7 +41,7 @@ TMDb: class {
     request: func (path: String, params: HashMap<String, String>) -> String {
         url := baseUrl + path
 
-        encoded := encode_parameters(params)
+        encoded := encode_parameters(params merge(defaults))
         if (encoded) {
             url += "?"
             url += encoded
